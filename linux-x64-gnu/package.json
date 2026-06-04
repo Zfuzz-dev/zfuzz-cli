@@ -1,0 +1,11 @@
+{
+  "name": "@zfuzz-cli/linux-x64-gnu",
+  "version": "0.2.0",
+  "description": "Zfuzz CLI native binary for Linux x64 (glibc). Installed automatically by @zfuzz/cli — do not depend on this directly.",
+  "license": "Apache-2.0",
+  "homepage": "https://zfuzz.dev",
+  "os": ["linux"],
+  "cpu": ["x64"],
+  "libc": ["glibc"],
+  "files": ["zfuzz"]
+}

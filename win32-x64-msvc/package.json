@@ -1,0 +1,10 @@
+{
+  "name": "@zfuzz-cli/win32-x64-msvc",
+  "version": "0.2.0",
+  "description": "Zfuzz CLI native binary for Windows x64 (MSVC). Installed automatically by @zfuzz/cli — do not depend on this directly.",
+  "license": "Apache-2.0",
+  "homepage": "https://zfuzz.dev",
+  "os": ["win32"],
+  "cpu": ["x64"],
+  "files": ["zfuzz.exe"]
+}

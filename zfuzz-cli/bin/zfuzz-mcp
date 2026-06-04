@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+'use strict';
+// Launch the Zfuzz MCP server: `zfuzz mcp-serve <args...>`.
+require('../scripts/run-binary').runBinary(['mcp-serve']);

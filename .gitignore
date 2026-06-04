@@ -1,0 +1,8 @@
+# Native binaries are NOT committed. The release CI builds them per target and
+# drops them into each @zfuzz-cli/<platform>/ dir before `npm publish`.
+*/zfuzz
+*/zfuzz.exe
+*/*.sig
+
+node_modules/
+.DS_Store
