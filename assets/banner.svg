@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 540" width="1280" height="540">
   <rect width="1280" height="540" fill="#f5f4f2"/>
   <text x="640" y="76" text-anchor="middle" font-size="15" letter-spacing="2.5" font-weight="700" font-family="Helvetica, Arial, sans-serif"><tspan fill="#ff6b00">&#9679;</tspan><tspan fill="#6b6b6b">  $0 &#183; OPEN SOURCE &#183; CLI</tspan></text>
-  <text x="640" y="210" text-anchor="middle" font-size="100" font-weight="900" letter-spacing="-4" font-family="Helvetica, Arial, sans-serif"><tspan fill="#0a0a0a">z</tspan><tspan fill="#ff6b00">fuzz</tspan></text>
-  <text x="640" y="300" text-anchor="middle" font-size="40" font-style="italic" font-weight="600" font-family="Georgia, 'Playfair Display', serif"><tspan fill="#0a0a0a">Three lines. All </tspan><tspan fill="#ff6b00">vulnerable</tspan><tspan fill="#0a0a0a">.</tspan></text>
+  <text x="640" y="206" text-anchor="middle" font-size="92" letter-spacing="-2" font-family="Archivo Black"><tspan fill="#0a0a0a">z</tspan><tspan fill="#ff6b00">fuzz</tspan></text>
+  <text x="640" y="298" text-anchor="middle" font-size="40" font-style="italic" font-weight="600" font-family="Georgia, 'Playfair Display', serif"><tspan fill="#0a0a0a">Three lines. All </tspan><tspan fill="#ff6b00">vulnerable</tspan><tspan fill="#0a0a0a">.</tspan></text>
   <rect x="453" y="356" width="374" height="64" rx="32" fill="#0a0a0a"/>
   <text x="640" y="396" text-anchor="middle" font-size="22" font-family="'SF Mono', Menlo, 'Courier New', monospace" fill="#e8e6e3">npx @zfuzz/cli scan .</text>
   <text x="640" y="486" text-anchor="middle" font-size="27" font-weight="800" fill="#ff6b00" font-family="Helvetica, Arial, sans-serif">zfuzz.dev</text>
