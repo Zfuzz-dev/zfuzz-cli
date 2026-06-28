@@ -70,4 +70,4 @@ npm uninstall -g @zfuzz/cli
 
 ---
 
-Part of the [Zfuzz](https://zfuzz.dev) security platform. Apache-2.0.
+Part of the [Zfuzz](https://zfuzz.com) security platform. Apache-2.0.

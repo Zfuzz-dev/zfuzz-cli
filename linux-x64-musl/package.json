@@ -1,9 +1,9 @@
 {
-  "name": "@zfuzz-cli/linux-x64-musl",
+  "name": "@zfuzz/cli-linux-x64-musl",
   "version": "0.2.0",
   "description": "Zfuzz CLI native binary for Linux x64 (musl). Installed automatically by @zfuzz/cli — do not depend on this directly.",
   "license": "Apache-2.0",
-  "homepage": "https://zfuzz.dev",
+  "homepage": "https://zfuzz.com",
   "os": ["linux"],
   "cpu": ["x64"],
   "libc": ["musl"],

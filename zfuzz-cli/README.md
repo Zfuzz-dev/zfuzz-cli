@@ -41,4 +41,4 @@ This wrapper ships **no binary itself**. It pulls the one **pre-built** `zfuzz` 
 No binary attestation (Ed25519/SHA-256) is performed yet — the hook point lives in `scripts/run-binary.js`. Until it lands, don't assume a cryptographically verified supply chain.
 </details>
 
-Part of the [Zfuzz](https://zfuzz.dev) security platform. License: Apache-2.0.
+Part of the [Zfuzz](https://zfuzz.com) security platform. License: Apache-2.0.

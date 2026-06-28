@@ -1,9 +1,9 @@
 {
-  "name": "@zfuzz-cli/darwin-arm64",
+  "name": "@zfuzz/cli-darwin-arm64",
   "version": "0.2.0",
   "description": "Zfuzz CLI native binary for macOS Apple Silicon (arm64). Installed automatically by @zfuzz/cli — do not depend on this directly.",
   "license": "Apache-2.0",
-  "homepage": "https://zfuzz.dev",
+  "homepage": "https://zfuzz.com",
   "os": ["darwin"],
   "cpu": ["arm64"],
   "files": ["zfuzz"]

@@ -4,7 +4,7 @@
 //
 // Resolution order:
 //   1. ZFUZZ_BIN env override (absolute path) — dev / self-hosted builds.
-//   2. The @zfuzz-cli/<platform> optionalDependency for this triple, which ships
+//   2. The @zfuzz/cli-<platform> optionalDependency for this triple, which ships
 //      the pre-built binary (no compilation at install time).
 //
 // NOTE (honest scope): there is NO binary attestation (Ed25519/SHA-256) yet.
