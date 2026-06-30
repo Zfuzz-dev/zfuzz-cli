@@ -1,0 +1,14 @@
+{
+  "version": "0.2.1",
+  "algorithm": "sha256",
+  "binaries": {
+    "@zfuzz/cli-darwin-arm64": "47522fa526e8af7e104ff330578c9924fae2b07564ced7ba13c29ac087453616",
+    "@zfuzz/cli-darwin-x64": "3dd9469a177f2668f2531cca725f879b24e0a666df8c43925a4848f4c24a4de8",
+    "@zfuzz/cli-linux-x64-gnu": "e37f086b5baae09896ea20bd0f1f6cd091ec7b3bee2f480d3706aeae552de921",
+    "@zfuzz/cli-linux-arm64-gnu": "c30b0b777b92149d8cdd1550923c07503480bfd5b8f8ee770a828393397b6db4",
+    "@zfuzz/cli-linux-x64-musl": "996128fe1e06508d3cd3ae96808887fbc42c2c3c7e92bf9609ec674d8e31a221",
+    "@zfuzz/cli-linux-arm64-musl": "def7805f994d0817c2faf6b742b951a25c471e3b426737574029e0c15d0b4b6a",
+    "@zfuzz/cli-win32-x64-msvc": "c72635ad6eb183baa585f6149249612e65e5e4ed42c19cf5958534bdd0ba0edf",
+    "@zfuzz/cli-win32-arm64-msvc": "e175d13852234b679e71b8940a1b4439aba4c031b9395b2db5482ca8f5087210"
+  }
+}

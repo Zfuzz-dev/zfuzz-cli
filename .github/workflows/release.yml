@@ -1,0 +1,83 @@
+name: release
+
+# Publishes @zfuzz/cli and the 8 @zfuzz/cli-<platform> binary packages to npm
+# with provenance, and attaches sigstore build-provenance attestations to every
+# native binary.
+#
+# Engine source stays private: the binaries are cross-compiled privately and
+# uploaded as assets on a GitHub Release here. This workflow only verifies,
+# attests, and publishes them. Trigger by publishing a Release whose tag is the
+# version (e.g. v0.2.1) with the 8 `zfuzz-<platform>` assets attached.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag holding the prebuilt binary assets (e.g. v0.2.1)
+        required: true
+
+permissions:
+  contents: read
+  id-token: write # npm provenance (OIDC)
+  attestations: write # actions/attest-build-provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - name: Download prebuilt binaries from the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name || inputs.tag }}
+        run: |
+          mkdir -p dist
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --dir dist --pattern 'zfuzz-*'
+          ls -la dist
+
+      - name: Stage binaries into platform packages
+        run: node tools/stage-binaries.mjs dist
+
+      - name: Generate pinned checksums.json
+        run: node tools/gen-checksums.mjs
+
+      - name: Verify launcher integrity logic
+        run: cd zfuzz-cli && npm test
+
+      - name: Attest binary build provenance (sigstore)
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            ${{ github.workspace }}/darwin-arm64/zfuzz
+            ${{ github.workspace }}/darwin-x64/zfuzz
+            ${{ github.workspace }}/linux-x64-gnu/zfuzz
+            ${{ github.workspace }}/linux-arm64-gnu/zfuzz
+            ${{ github.workspace }}/linux-x64-musl/zfuzz
+            ${{ github.workspace }}/linux-arm64-musl/zfuzz
+            ${{ github.workspace }}/win32-x64-msvc/zfuzz.exe
+            ${{ github.workspace }}/win32-arm64-msvc/zfuzz.exe
+
+      - name: Publish platform binary packages (with provenance)
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          for d in darwin-arm64 darwin-x64 linux-x64-gnu linux-arm64-gnu \
+                   linux-x64-musl linux-arm64-musl win32-x64-msvc win32-arm64-msvc; do
+            echo "::group::publish @zfuzz/cli-$d"
+            (cd "$d" && npm publish --provenance --access public)
+            echo "::endgroup::"
+          done
+
+      - name: Publish @zfuzz/cli (launcher + checksums.json, with provenance)
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: cd zfuzz-cli && npm publish --provenance --access public

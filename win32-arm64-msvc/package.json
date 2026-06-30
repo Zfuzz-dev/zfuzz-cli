@@ -1,10 +1,24 @@
 {
   "name": "@zfuzz/cli-win32-arm64-msvc",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Zfuzz CLI native binary for Windows arm64 (MSVC). Installed automatically by @zfuzz/cli — do not depend on this directly.",
   "license": "Apache-2.0",
   "homepage": "https://zfuzz.com",
-  "os": ["win32"],
-  "cpu": ["arm64"],
-  "files": ["zfuzz.exe"]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zfuzz-dev/zfuzz-cli.git"
+  },
+  "os": [
+    "win32"
+  ],
+  "cpu": [
+    "arm64"
+  ],
+  "files": [
+    "zfuzz.exe"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
 }

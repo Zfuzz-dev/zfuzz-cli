@@ -1,11 +1,27 @@
 {
   "name": "@zfuzz/cli-linux-arm64-gnu",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Zfuzz CLI native binary for Linux arm64 (glibc). Installed automatically by @zfuzz/cli — do not depend on this directly.",
   "license": "Apache-2.0",
   "homepage": "https://zfuzz.com",
-  "os": ["linux"],
-  "cpu": ["arm64"],
-  "libc": ["glibc"],
-  "files": ["zfuzz"]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zfuzz-dev/zfuzz-cli.git"
+  },
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "arm64"
+  ],
+  "libc": [
+    "glibc"
+  ],
+  "files": [
+    "zfuzz"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
 }

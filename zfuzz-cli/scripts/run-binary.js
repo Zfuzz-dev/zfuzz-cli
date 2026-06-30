@@ -4,18 +4,22 @@
 //
 // Resolution order:
 //   1. ZFUZZ_BIN env override (absolute path) — dev / self-hosted builds.
+//      Unverified by design (you built it; you trust it).
 //   2. The @zfuzz/cli-<platform> optionalDependency for this triple, which ships
-//      the pre-built binary (no compilation at install time).
+//      the pre-built binary (no compilation at install time). Verified against
+//      the pinned SHA-256 in checksums.json before exec.
 //
-// NOTE (honest scope): there is NO binary attestation (Ed25519/SHA-256) yet.
-// Fallow verifies signatures on first run; we ship without that for now. When
-// added, hook it here before exec. Do not claim a signed supply chain until then.
+// Supply chain: each released binary is sigstore-attested (actions/attest-build-
+// provenance) and every @zfuzz/* package is published with npm --provenance. At
+// runtime we additionally pin the binary's SHA-256 (see verify-binary.js) and
+// refuse to execute a mismatch.
 
 const { spawn } = require('node:child_process');
 const path = require('node:path');
 const fs = require('node:fs');
 
 const { getPlatformPackage } = require('./platform-package');
+const { verifyBinary } = require('./verify-binary');
 
 function resolvePlatformPackageName() {
   if (process.platform !== 'linux') {
@@ -30,10 +34,11 @@ function resolvePlatformPackageName() {
 }
 
 // Returns the absolute path to the platform `zfuzz` binary, or exits with an
-// actionable message. Never returns null.
+// actionable message. Never returns null. Verifies the binary's SHA-256 against
+// the pinned manifest before returning (unless ZFUZZ_BIN is used).
 function resolveBinaryPath() {
   const override = process.env.ZFUZZ_BIN;
-  if (override && fs.existsSync(override)) return override;
+  if (override && fs.existsSync(override)) return override; // dev escape hatch, unverified
 
   const pkg = resolvePlatformPackageName();
   if (!pkg) {
@@ -56,6 +61,15 @@ function resolveBinaryPath() {
   const binaryPath = path.join(path.dirname(manifestPath), binaryName);
   if (!fs.existsSync(binaryPath)) {
     process.stderr.write(`zfuzz: binary not found at ${binaryPath}\n`);
+    process.exit(1);
+  }
+
+  // Integrity gate: refuse to exec a binary that does not match the published,
+  // sigstore-attested release recorded in checksums.json.
+  try {
+    verifyBinary(binaryPath, pkg);
+  } catch (err) {
+    process.stderr.write(`${err.message}\n`);
     process.exit(1);
   }
   return binaryPath;

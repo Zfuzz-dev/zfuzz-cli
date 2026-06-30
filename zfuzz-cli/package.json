@@ -1,15 +1,19 @@
 {
   "name": "@zfuzz/cli",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Zfuzz security CLI — deterministic SAST, SCA, secret scanning and an MCP server for AI coding agents. Rust-native, sub-second, zero config. Static scanning is free and open source.",
   "license": "Apache-2.0",
   "homepage": "https://zfuzz.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zfuzz-dev/zfuzz-cli"
+    "url": "git+https://github.com/Zfuzz-dev/zfuzz-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/zfuzz-dev/zfuzz-cli/issues"
+    "url": "https://github.com/Zfuzz-dev/zfuzz-cli/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "keywords": [
     "security",
@@ -35,10 +39,11 @@
   "files": [
     "bin",
     "scripts",
+    "checksums.json",
     "README.md"
   ],
   "scripts": {
-    "test": "node --test scripts/platform-package.test.js"
+    "test": "node --test scripts/*.test.js"
   },
   "engines": {
     "node": ">=18"
@@ -47,13 +52,13 @@
     "detect-libc": "2.1.2"
   },
   "optionalDependencies": {
-    "@zfuzz/cli-darwin-arm64": "0.2.0",
-    "@zfuzz/cli-darwin-x64": "0.2.0",
-    "@zfuzz/cli-linux-x64-gnu": "0.2.0",
-    "@zfuzz/cli-linux-arm64-gnu": "0.2.0",
-    "@zfuzz/cli-linux-x64-musl": "0.2.0",
-    "@zfuzz/cli-linux-arm64-musl": "0.2.0",
-    "@zfuzz/cli-win32-x64-msvc": "0.2.0",
-    "@zfuzz/cli-win32-arm64-msvc": "0.2.0"
+    "@zfuzz/cli-darwin-arm64": "0.2.1",
+    "@zfuzz/cli-darwin-x64": "0.2.1",
+    "@zfuzz/cli-linux-x64-gnu": "0.2.1",
+    "@zfuzz/cli-linux-arm64-gnu": "0.2.1",
+    "@zfuzz/cli-linux-x64-musl": "0.2.1",
+    "@zfuzz/cli-linux-arm64-musl": "0.2.1",
+    "@zfuzz/cli-win32-x64-msvc": "0.2.1",
+    "@zfuzz/cli-win32-arm64-msvc": "0.2.1"
   }
 }

@@ -1,10 +1,24 @@
 {
   "name": "@zfuzz/cli-darwin-x64",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Zfuzz CLI native binary for macOS Intel (x64). Installed automatically by @zfuzz/cli — do not depend on this directly.",
   "license": "Apache-2.0",
   "homepage": "https://zfuzz.com",
-  "os": ["darwin"],
-  "cpu": ["x64"],
-  "files": ["zfuzz"]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zfuzz-dev/zfuzz-cli.git"
+  },
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "files": [
+    "zfuzz"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
 }
